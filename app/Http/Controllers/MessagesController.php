@@ -17,7 +17,10 @@ class MessagesController extends Controller
 
     public function create(\App\Http\Requests\CreateMessageRequest $data){
 
+        $user = $data->user();
+
         $message = Message::create([
+            'user_id' => $user->id,
             'content'   => $data->input('message'),
             'image'     => 'http://lorempixel.com/600/338?'.mt_rand(0,1000),
         ]);
