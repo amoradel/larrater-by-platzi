@@ -14,10 +14,10 @@
         <form action="/messages/create" method="POST">
             {{csrf_field()}}
             <div class="form-group">
-                <input type="text" name="message" class="form-control ml-3 @if ($errors->has('message')) is-invalid @endif" placeholder="Qué estas pensando?">
-                @if ($errors->has('message'))
-                    @foreach ($errors->get('message') as $error)
-                        <div class="invalid-feedback">
+                <input type="text" name="message" class="form-control ml-3 @if (!$errors->isEmpty()) is-invalid @endif" placeholder="Qué estas pensando?">
+                @if (!$errors->isEmpty())
+                    @foreach ($errors->all() as $error)
+                        <div class="ml-3 invalid-feedback">
                             {{$error}}
                         </div>
                     @endforeach
