@@ -4,7 +4,7 @@
     <h1>{{$user->name}}</h1>
 
     <a href="/{{$user->username}}/follows" class="btn btn-links"> 
-        Sigo a 
+        Seguidos
         <span class="badge badge-warning"> 
             {{$user->follows->count()}}
         </span> 
