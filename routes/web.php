@@ -19,14 +19,19 @@ Route::post('messages/create', 'MessagesController@create');
 // ->middleware('auth');
 
 Auth::routes();
+Route::get('/auth/facebook', 'SocialAuthController@facebook');
+Route::get('/auth/facebook/callback', 'SocialAuthController@callback');
+
+
 
 Route::get('/home', 'HomeController@index')->name('home');
-
 
 Route::get('/{username}', 'UsersController@show');
 
 Route::get('/{username}/follows', 'UsersController@follows');
-Route::post('/{username}/follow', 'UsersController@follow');
-
 Route::get('/{username}/followers', 'UsersController@followers');
+
+Route::post('/{username}/follow', 'UsersController@follow');
+Route::post('/{username}/unfollow', 'UsersController@unfollow');
+
 

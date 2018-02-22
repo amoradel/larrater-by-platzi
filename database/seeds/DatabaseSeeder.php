@@ -23,9 +23,9 @@ class DatabaseSeeder extends Seeder
                 'user_id' => $user->id,
             ]);
 
-            // $user->follows()->sync(
-            //     $users->random(10)
-            // );
+            $user->follows()->sync(
+                $users->random(10)
+            );
         });
         
     }
