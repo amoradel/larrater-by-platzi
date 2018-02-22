@@ -18,7 +18,7 @@
                 @if (!$errors->isEmpty())
                     @foreach ($errors->all() as $error)
                         <div class="ml-3 invalid-feedback">
-                            {{$error}}
+                            <li>{{$error}}</li>  
                         </div>
                     @endforeach
                 @endif
