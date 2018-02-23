@@ -21,6 +21,7 @@ Route::post('messages/create', 'MessagesController@create');
 Auth::routes();
 Route::get('/auth/facebook', 'SocialAuthController@facebook');
 Route::get('/auth/facebook/callback', 'SocialAuthController@callback');
+Route::get('/auth/facebook/register', 'SocialAuthController@register');
 
 
 
@@ -33,5 +34,4 @@ Route::get('/{username}/followers', 'UsersController@followers');
 
 Route::post('/{username}/follow', 'UsersController@follow');
 Route::post('/{username}/unfollow', 'UsersController@unfollow');
-
 

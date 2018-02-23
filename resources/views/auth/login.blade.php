@@ -45,20 +45,22 @@
                 </div>
 
                 <div class="form-group">
-                    <div class="col-md-8 offset-md-4">
+                    <div class="col-md-8">
                         <button type="submit" class="btn btn-primary">
-                            Login
+                            Entrar
                         </button>
 
+                        <a href="/auth/facebook" class="btn btn-primary">Login with <i class="fa fa-facebook-official" aria-hidden="true"></i> </a>
+                        
                         <a class="btn btn-link" href="{{ route('password.request') }}">
                             Forgot Your Password?
                         </a>
+
+                        
                     </div>
                 </div>
             </form>
         </div>
     </div>
-    <div class="row">
-        <a href="/auth/facebook" class="btn btn-primary">Login con facebook</a>
-    </div>
+
 @endsection
