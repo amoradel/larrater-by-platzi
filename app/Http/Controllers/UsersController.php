@@ -61,12 +61,10 @@ class UsersController extends Controller
     public function sendPrivateMessage($username, Request $request){
         $user = $this->findByUsername($username);
 
-        $me = $request->user();
+        $me = $request->user(); //Como se obtiene este user?
         $message = $request->input('message');
 
-        $conversation = Conversation::create();
-        $conversation->users()->attach($me);
-        $conversation->users()->attach($user);
+        $conversation = Conversation::between($me,$user);
         
         $privateMessage = PrivateMessage::create([
             'user_id' => $me->id,
