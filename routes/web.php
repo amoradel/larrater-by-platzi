@@ -32,6 +32,16 @@ Route::get('/{username}', 'UsersController@show');
 Route::get('/{username}/follows', 'UsersController@follows');
 Route::get('/{username}/followers', 'UsersController@followers');
 
-Route::post('/{username}/follow', 'UsersController@follow');
-Route::post('/{username}/unfollow', 'UsersController@unfollow');
+Route::group(['middleware' => 'auth'], function(){
+    Route::post('/{username}/dms', 'UsersController@sendPrivateMessage');
+
+    Route::post('/{username}/follow', 'UsersController@follow');
+    Route::post('/{username}/unfollow', 'UsersController@unfollow');
+    Route::get('/conversations/{conversation}', 'UsersController@showConversation');
+
+});
+
+
+
+
 
