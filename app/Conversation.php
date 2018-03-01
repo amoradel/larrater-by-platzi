@@ -29,4 +29,10 @@ class Conversation extends Model
         
         return $conversation;
     }
+
+    public function haveUser(User $user){
+        return Conversation::whereHas('users', function($query) use ($user){
+            $query->where('user_id', $user->id);
+        })->first();
+    }
 }
