@@ -10,6 +10,8 @@ use App\PrivateMessage;
 class UsersController extends Controller
 {
     public function show($username){
+
+
         $user = $this->findByUsername($username);
 
         return view('users.show',
@@ -77,21 +79,15 @@ class UsersController extends Controller
 
     public function showConversation(Conversation $conversation){
         $conversation->load('users', 'privateMessages');
-        // dd($conversation);
 
         $have_user= $conversation->haveUser(auth()->user());
-        if(isset($have_user)){
             return view('users.conversation',[
                 'conversation' => $conversation,
                 'user' => auth()->user()
             ]);
-        }else{
-            return redirect('/');
-        }
-        
     }
 
     private function findByUsername($username){
-        return $user = User::where('username', $username)->first();
+        return $user = User::where('username', $username)->firstOrFail();
     }
 }

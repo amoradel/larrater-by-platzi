@@ -40,8 +40,3 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/conversations/{conversation}', 'UsersController@showConversation');
 
 });
-
-
-
-
-
