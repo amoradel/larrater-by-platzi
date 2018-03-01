@@ -6,6 +6,7 @@ use App\Message;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateMessageRequest;
 
+
 class MessagesController extends Controller
 {
     public function show(Message $id){
@@ -36,8 +37,8 @@ class MessagesController extends Controller
     public function search(Request $request){
         $query = $request->input('query');
         
-        $messages = Message::where('content', 'LIKE', "%$query%")->get();
-
+        $messages = Message::search($query)->get();
+        $messages->load('user');
         // dd($messages);
         
         return view('messages.index',[

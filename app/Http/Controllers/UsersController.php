@@ -12,7 +12,7 @@ class UsersController extends Controller
     public function show($username){
 
 
-        $user = $this->findByUsername($username);
+        $user = User::where('username', $username)->firstOrFail();
 
         return view('users.show',
         [

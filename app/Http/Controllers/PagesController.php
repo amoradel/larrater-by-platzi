@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class PagesController extends Controller
 {
     public function home(){
-        $messages = Message::latest()
+        $messages = Message::with('user')->latest()
                     ->paginate(10);
         
         // dd($messages);
