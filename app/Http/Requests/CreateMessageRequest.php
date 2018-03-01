@@ -25,14 +25,12 @@ class CreateMessageRequest extends FormRequest
     {
         return [
             'message' => ['required','max:160'],
-            'user_id' => ['required']
         ];
     }
 
     public function messages(){
         return [
             'message.required'  => 'Por favor, escribe tu mensaje.',
-            'user_id.required'  => 'Necesita iniciar sesión para enviar su mensaje',
             'message.max'       => 'El mensaje no puede superar los 160 caracteres.',
         ];
     }

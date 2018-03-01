@@ -10,11 +10,12 @@
         </nav>
     </div>
 
+    @if (Auth::check())
     <div class="row">
-        <form action="/messages/create" method="POST">
+        <form action="/messages/create" method="POST" enctype="multipart/form-data">
             {{csrf_field()}}
-            <div class="form-group">
-                <input type="text" name="message" class="form-control ml-3 @if (!$errors->isEmpty()) is-invalid @endif" placeholder="Qué estas pensando?">
+            <div class="form-group ml-3">
+                <input type="text" name="message" class="form-control  @if (!$errors->isEmpty()) is-invalid @endif" placeholder="Qué estas pensando?">
                 @if (!$errors->isEmpty())
                     @foreach ($errors->all() as $error)
                         <div class="ml-3 invalid-feedback">
@@ -22,9 +23,11 @@
                         </div>
                     @endforeach
                 @endif
+                <input type="file" name="image" class="form-control-file">
             </div>
         </form>
     </div>
+    @endif
 
     <div class="row">
         @forelse ($messages as $message)
