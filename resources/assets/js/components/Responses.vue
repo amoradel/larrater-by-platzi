@@ -4,11 +4,14 @@
 
     <div class="col-12 mt-2" v-bind:key="response" v-for="response in responses">
         <div class="card">
+            <div class="card-header text-muted">
+                {{response.user.username}}
+            </div>
             <div class="card-block">
                 {{ response.message }}
             </div>
             <div class="card-footer text-muted">
-                {{ response.created_at }}
+                  {{ response.created_at }}
             </div>
         </div>
     </div>

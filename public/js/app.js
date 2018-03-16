@@ -48947,6 +48947,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['message'],
@@ -48993,6 +48996,14 @@ var render = function() {
       _vm._l(_vm.responses, function(response) {
         return _c("div", { key: response, staticClass: "col-12 mt-2" }, [
           _c("div", { staticClass: "card" }, [
+            _c("div", { staticClass: "card-header text-muted" }, [
+              _vm._v(
+                "\n              " +
+                  _vm._s(response.user.username) +
+                  "\n          "
+              )
+            ]),
+            _vm._v(" "),
             _c("div", { staticClass: "card-block" }, [
               _vm._v(
                 "\n              " + _vm._s(response.message) + "\n          "
@@ -49001,7 +49012,7 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "card-footer text-muted" }, [
               _vm._v(
-                "\n              " +
+                "\n                " +
                   _vm._s(response.created_at) +
                   "\n          "
               )
