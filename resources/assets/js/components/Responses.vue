@@ -1,24 +1,37 @@
 <template>
   <div class="row">
-	  <a href="#">Ver respuestas</a>
+    <a href="#" class="btn btn-outline-primary"  v-on:click="load">Ver respuestas</a>
 
-		<div class="card" v-bind:key="response" v-for="response in responses">
-		  {{ response.message }}
-	  	</div>
+    <div class="col-12 mt-2" v-bind:key="response" v-for="response in responses">
+        <div class="card">
+            <div class="card-block">
+                {{ response.message }}
+            </div>
+            <div class="card-footer text-muted">
+                {{ response.created_at }}
+            </div>
+        </div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-	data(){
-		return{
-			responses:[
-				{
-					message: "Esto es una prueba."
-				}
-			],
-		}
-	}
-};
+    props: ['message'],
+    data(){
+        return{
+            responses:[]
+        }
+    },
+
+    methods:{
+            load(){
+                axios.get('/api/messages/' + this.message + '/responses')
+                    .then(res => {
+                        this.responses = res.data;
+                    });
+            }
+        }
+    };
 </script>
 
