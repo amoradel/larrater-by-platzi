@@ -35,6 +35,8 @@ Route::get('/{username}/follows', 'UsersController@follows');
 Route::get('/{username}/followers', 'UsersController@followers');
 
 
+Route::get('/api/messages/{message}/responses','MessagesController@responses');
+
 
 
 Route::group(['middleware' => 'auth'], function(){
