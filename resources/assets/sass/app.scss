@@ -6,7 +6,12 @@
 // @import "variables";
 
 
+
 // Bootstrap
 @import "node_modules/bootstrap/scss/bootstrap";
 
+// fontawesome
 @import "node_modules/@fortawesome/fontawesome-free-webfonts/scss/fontawesome";
+@import 'node_modules/@fortawesome/fontawesome-free-webfonts/scss/fa-regular';
+@import 'node_modules/@fortawesome/fontawesome-free-webfonts/scss/fa-solid';
+@import 'node_modules/@fortawesome/fontawesome-free-webfonts/scss/fa-brands';

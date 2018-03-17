@@ -8,16 +8,22 @@
 
 <script>
 export default {
-  data(){
-      return {
-          notifications: []
-      }
-  },
-  mounted(){
-      axios.get('/api/notifications')
-      .then(res => {
-          this.notifications = res.data;
-      });
-  }
+    props: ['user'],
+    data(){
+        return {
+            notifications: []
+        }
+    },
+    mounted(){
+        axios.get('/api/notifications')
+        .then(res => {
+            this.notifications = res.data;
+
+            Echo.private(`App.User.${this.user}`)
+            .notification(notification => {
+                this.notifications.unshift(notification);
+            });
+        });
+    }
 }
 </script>

@@ -46,7 +46,7 @@
                     @else
                         <li class="nav-item dropdown mr-2">
                             <a href="#" class="dropdown" data-toggle="dropdown">
-                                <i class="fa fa-bell"></i>
+                                <i class="fas fa-bell"></i>
                             </a>
                             <notifications :user="{{Auth::user()->id}}"> </notifications>
                         </li>
