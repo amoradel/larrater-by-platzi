@@ -7,18 +7,21 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
+use App\User;
+
 class UserFollowed extends Notification
 {
     use Queueable;
 
+    public $follower;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(User $follower)
     {
-        //
+        $this->follower = $follower;
     }
 
     /**
@@ -29,7 +32,8 @@ class UserFollowed extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        // return ['mail', 'database'];
+        return ['database'];
     }
 
     /**
@@ -41,9 +45,11 @@ class UserFollowed extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->subject('Tienes un nuevo seguidor')
+                    ->greeting('Hola, '.$notifiable->name)
+                    ->line('El usuario '. $this->follower->username. ' te ha seguido.')
+                    ->action('Ver perfil', url('/'.$this->follower->username))
+                    ->salutation('Gracias por usar Laratter!');
     }
 
     /**
@@ -55,7 +61,7 @@ class UserFollowed extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'follower' => $this->follower,
         ];
     }
 }

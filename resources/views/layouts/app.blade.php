@@ -38,16 +38,23 @@
                 </ul>
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav ml-auto">
+                    
                     <!-- Authentication Links -->
                     @guest
                         <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Entrar</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Registrarse</a></li>
                     @else
+                        <li class="nav-item dropdown mr-2">
+                            <a href="#" class="dropdown" data-toggle="dropdown">
+                                <i class="fa fa-bell"></i>
+                            </a>
+                            <notifications :user="{{Auth::user()->id}}"> </notifications>
+                        </li>
                         <li class="nav-item dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
-                            <div class="dropdown-menu">
+                            <div class="dropdown-menu dropdown-menu-right">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
@@ -64,7 +71,9 @@
             </div>
         </nav>
         <main role="main" class="container mt-6">
-            @yield('content')
+                
+
+                @yield('content')
         </main>
     </div>
     <!-- Scripts -->

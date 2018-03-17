@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Conversation;
 use App\PrivateMessage;
+use App\Notifications\UserFollowed;
 
 class UsersController extends Controller
 {
@@ -44,6 +45,8 @@ class UsersController extends Controller
         $me =$request->user();
 
         $me->follows()->attach($user);
+
+        $user->notify(new UserFollowed($me));
 
         return redirect("/$username")->withSuccess('Usuario seguido!');
     }
@@ -86,6 +89,11 @@ class UsersController extends Controller
                 'user' => auth()->user()
             ]);
     }
+
+    public function notifications(Request $request){
+        return $request->user()->notifications;
+    }
+
 
     private function findByUsername($username){
         return $user = User::where('username', $username)->firstOrFail();
